@@ -46,12 +46,12 @@ int partition(std::vector<int>& arr, int low, int high) {
 }
 
 // Функция быстрой сортировки с использованием TBB
-void parallelQuickSort(std::vector<int>& arr, int low, int high) {
+void singleCoreQuickSort(std::vector<int>& arr, int low, int high) {
     if (low < high) {
         int pivotIndex = partition(arr, low, high);
 
-        parallelQuickSort(arr, low, pivotIndex - 1);
-        parallelQuickSort(arr, pivotIndex + 1, high);
+        singleCoreQuickSort(arr, low, pivotIndex - 1);
+        singleCoreQuickSort(arr, pivotIndex + 1, high);
     }
 }
 
@@ -68,7 +68,7 @@ int main() {
     auto start = std::chrono::high_resolution_clock::now();
 
     // Вызываем алгоритм быстрой сортировки на одном ядре
-    std::thread sortingThread(parallelQuickSort, std::ref(data), 0, dataSize - 1);
+    std::thread sortingThread(singleCoreQuickSort, std::ref(data), 0, dataSize - 1);
     setAffinity(sortingThread, 0);  // Привязываем к первому ядру
 
     sortingThread.join();
