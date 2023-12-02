@@ -40,7 +40,7 @@ void quickSort(std::vector<int>& arr, int low, int high) {
 }
 
 int main() {
-    const int dataSize = 100000000;
+    const int dataSize = 100000;
     std::vector<int> data(dataSize);
     
     // Фиксированный seed для воспроизводимости
