@@ -8,7 +8,6 @@
 using namespace std;
 using namespace tbb;
 
-// Function to perform Gaussian elimination with NEON optimization
 template <typename T>
 void gaussianElimination(vector<vector<T>>& A, vector<T>& b) {
     const int n = A.size();

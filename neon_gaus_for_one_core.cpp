@@ -8,7 +8,6 @@
 
 using namespace std;
 
-// Function to perform Gaussian elimination without parallelization
 template <typename T>
 void gaussianElimination(vector<vector<T>>& A, vector<T>& b) {
     const int n = A.size();
