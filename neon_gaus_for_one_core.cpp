@@ -49,8 +49,10 @@ void gaussianElimination(vector<vector<T>>& A, vector<T>& b) {
 
 int main() {
     int n, seed;
-    n = 1000;
-    seed = 220;
+    cout << "Введите размер системы: ";
+    cin >> n;
+    cout << "Введите зерно для генерации случайных чисел: ";
+    cin >> seed;
 
     vector<vector<float>> A(n, vector<float>(n));
     vector<float> b(n);
