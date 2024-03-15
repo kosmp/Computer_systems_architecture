@@ -9,7 +9,7 @@
 
 using namespace std;
 
-// Функция для выполнения метода Гаусса с оптимизацией AVX
+// Функция для выполнения метода Гаусса с оптимизацией AVX для одного ядра
 template <typename T>
 void gaussianElimination(vector<vector<T>>& A, vector<T>& b) {
     const int n = A.size();
@@ -62,6 +62,7 @@ void setAffinity(std::thread& t, int core_id) {
     cpu_set_t cpuset;
     CPU_ZERO(&cpuset);
     CPU_SET(core_id, &cpuset);
+    // native_handle - дескриптор потока
     pthread_setaffinity_np(t.native_handle(), sizeof(cpu_set_t), &cpuset);
 }
 

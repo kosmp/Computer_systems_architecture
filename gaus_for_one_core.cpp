@@ -27,8 +27,10 @@ void gaussianElimination(vector<vector<T>>& A, vector<T>& b) {
 
         // Обнуляем элементы ниже опорного
         for (int j = i + 1; j < n; ++j) {
+            // Расчет множителя factor, на который будут умножены элементы строки, чтобы обнулить элементы ниже опорного.
             T factor = A[j][i] / A[i][i];
             for (int k = i; k < n; ++k) {
+                // Обнуление элементов в текущей строке.
                 A[j][k] -= factor * A[i][k];
             }
             b[j] -= factor * b[i];

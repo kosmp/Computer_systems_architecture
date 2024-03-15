@@ -8,6 +8,7 @@
 
 using namespace std;
 
+// метод Гаусса с NEON оптимизацией. Для нескольких ядер
 template <typename T>
 void gaussianElimination(vector<vector<T>>& A, vector<T>& b) {
     const int n = A.size();

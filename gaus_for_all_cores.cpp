@@ -7,7 +7,7 @@
 
 using namespace std;
 
-// Функция для выполнения метода Гаусса с оптимизацией AVX
+// Функция для выполнения метода Гаусса
 template <typename T>
 void gaussianElimination(vector<vector<T>>& A, vector<T>& b) {
     const int n = A.size();
@@ -25,6 +25,7 @@ void gaussianElimination(vector<vector<T>>& A, vector<T>& b) {
         swap(b[i], b[pivot]);
 
         // Обнуляем элементы ниже опорного
+        // blocked_range - текущий блок итерации
         tbb::parallel_for(tbb::blocked_range<int>(i + 1, n),
                           [&](const tbb::blocked_range<int>& r) {
                               for (int j = r.begin(); j < r.end(); ++j) {
@@ -68,7 +69,6 @@ int main() {
     uniform_real_distribution<double> dis(1.0, 10.0);
 
     for (int i = 0; i < n; ++i) {
-        A[i].resize(n); // Изменяем размер каждой строки
         for (int j = 0; j < n; ++j) {
             A[i][j] = dis(gen);
         }
